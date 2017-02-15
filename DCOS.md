@@ -79,17 +79,19 @@ DC/OS用户空间跨越系统服务和用户服务，如Chronos或Kafka。
 
 上述组件之间的时间相互作用看起来像这样。注意，Executors和Task被折叠成一个块，因为在实践中经常是这样。
 ![](https://docs.mesosphere.com/wp-content/uploads/2016/06/dcos-architecture-distributed-process-management-seq-diagram-4-1200x726@2x.png)
+
 具体来说，这里是步骤：
+
 1.  客户机/调度程序初始化：客户机需要知道如何连接到调度程序以启动一个进程，例如通过Mesos-DNS或DC/OS CLI。
 2. Mesos主机向调度器发送资源提供：资源提供基于通过Agent管理的集群资源和Mesos主机中的DRF算法
 3. 调度程序拒绝资源提供，因为没有来自客户端的进程请求挂起。只要没有客户端启动进程，调度程序将拒绝来自主服务器的提议。
 4. 客户端启动进程启动。例如，这可以是通过DC / OS 服务选项卡或通过HTTP端点创建Marathon应用程序的用户`/v2/app`。
 5. Mesos Master 发起资源邀约：例如:cpus(*):1; mem(*):128; ports(*):[21452-21452]
 6. 如果资源邀约匹配调度程序对进程的要求，则它接受该邀约并向Mesos Master 发送 launchTask请求。
-7.Mesos Master 指派Mesos Agent 去launch task
-8.Mesos  Agent通过executor执行task
-9.Executor向Agent报告task执行情况
-10.Mesos Agent 将任务执行情况报告给Mesos Master
-11.Mesos Master 将任务执行情况报告给Scheduler
-12.Scheduler向客户端报告任务执行情况
+7. Mesos Master 指派Mesos Agent 去launch task
+8. Mesos  Agent通过executor执行task
+9. Executor向Agent报告task执行情况
+10. Mesos Agent 将任务执行情况报告给Mesos Master
+11. Mesos Master 将任务执行情况报告给Scheduler
+12. Scheduler向客户端报告任务执行情况
 
