@@ -50,8 +50,8 @@ DC/OS内核空间由Mesos主机和Mesos代理组成。用户空间包括系统�
 * Mesos masters:`mesos-master`节点该进程协调在Mesos代理上运行的任务。Mesos主进程从Mesos代理接收资源报告，并将这些资源分配给注册的DC / OS服务，如Marathon或Spark。当主导Mesos主服务器由于崩溃或脱机升级失败时，备用Mesos主控器自动成为领导者而不中断正在运行的服务。动物园管理员执行领导选举
 
 * Mesos agents: `mesos-agent`节点代表框架运行离散Mesos任务。私有Agent节点通过不可路由的网络运行部署的应用和服务。公共Agent节点在可公开访问的网络中运行DC / OS应用和服务。`mesos-slave`Mesos Agent上的进程管理其本地资源（CPU核心，RAM等），并将这些资源注册到Mesos Master。它还接受来自Mesos Master的调度请求，并调用Executor通过容器化器启动任务： 
-	   *  Mesos容器化程序使用特定于Linux的功能（如cgroups和命名空间）提供轻量级的容器化和执行者的资源隔离。
- * Docker容器化程序支持启动包含Docker镜像的任务。
+	*  Mesos容器化程序使用特定于Linux的功能（如cgroups和命名空间）提供轻量级的容器化和执行者的资源隔离。
+	* Docker容器化程序支持启动包含Docker镜像的任务。
 
 #### User Space 
 DC/OS用户空间跨越系统服务和用户服务，如Chronos或Kafka。
